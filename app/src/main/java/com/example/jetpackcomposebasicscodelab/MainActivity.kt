@@ -35,6 +35,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Expand
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -99,48 +101,53 @@ private fun GreetingsPreview(){
         Greetings()
     }
 }
-
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(name: String){
+    Card(colors= CardDefaults.cardColors(
+        containerColor=MaterialTheme.colorScheme.primary
+        ),
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ){
+        CardContents(name)
+    }
+}
+@Composable
+fun CardContents(name: String, modifier: Modifier = Modifier) {
     var expanded by remember{mutableStateOf(false)}
 
-    Surface(
-        color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier.padding(vertical=4.dp, horizontal = 8.dp)
-    ) {
-        Row(modifier = Modifier
-            .padding(24.dp)
-            .animateContentSize(
-                animationSpec = spring(
-                    dampingRatio=Spring.DampingRatioMediumBouncy,
-                    stiffness = Spring.StiffnessLow
-                )
+    Row(modifier = Modifier
+        .padding(12.dp)
+        .animateContentSize(
+            animationSpec = spring(
+                dampingRatio=Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessLow
             )
-            .fillMaxWidth()){
-            Column(modifier= Modifier
-                .weight(1f)
-
-            ){
-                Text(text = "Hello,")
-                Text(text = name,style=MaterialTheme.typography.headlineMedium.copy(
-                    fontWeight= FontWeight.ExtraBold
-                ))
-                if(expanded){
-                    Text(("Compsem inpum color sit lzy"+ "padding theme elit, sed do bouncy.").repeat(4))
-                }
+        )
+        .fillMaxWidth()){
+        Column(modifier= Modifier
+            .weight(1f)
+            .padding(12.dp)
+        ){
+            Text(text = "Hello,")
+            Text(text = name,style=MaterialTheme.typography.headlineMedium.copy(
+                fontWeight= FontWeight.ExtraBold
+            ))
+            if(expanded){
+                Text(("Compsem inpum color sit lzy"+ "padding theme elit, sed do bouncy.").repeat(4))
             }
+        }
 
-            IconButton(onClick = {expanded=!expanded }) {
-                Icon(
-                    imageVector = if(expanded)Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
-                    contentDescription = if(expanded) stringResource(R.string.show_less) else stringResource(R.string.show_more)
-                )
+        IconButton(onClick = {expanded=!expanded }) {
+            Icon(
+                imageVector = if(expanded)Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                contentDescription = if(expanded) stringResource(R.string.show_less) else stringResource(R.string.show_more)
+            )
 
-                
-            }
 
         }
+
     }
+
 }
 
 @Preview(showBackground = true,widthDp=320)
