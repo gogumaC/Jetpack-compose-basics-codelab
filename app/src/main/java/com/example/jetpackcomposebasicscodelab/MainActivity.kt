@@ -52,12 +52,14 @@ private fun MyApp(
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val expanded=remember{mutableStateOf(false)}
+    val extraPadding=if(expanded.value) 48.dp else 0.dp
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical=4.dp, horizontal = 8.dp)
     ) {
         Row(modifier = Modifier.padding(24.dp).fillMaxWidth()){
             Column(modifier= Modifier.weight(1f)
+                .padding(bottom=extraPadding)
             ){
                 Text(text = "Hello,")
                 Text(text = name)
@@ -67,8 +69,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             }
 
         }
-
-
     }
 }
 
