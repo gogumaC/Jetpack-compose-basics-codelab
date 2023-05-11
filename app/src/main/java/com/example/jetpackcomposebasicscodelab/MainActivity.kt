@@ -81,7 +81,8 @@ private fun Greetings(
     showBackground = true,
     widthDp = 320,
     uiMode=UI_MODE_NIGHT_YES,
-    name="Dark"
+    name="Dark",
+
 )
 @Preview(showBackground = true, widthDp = 320)
 @Composable
