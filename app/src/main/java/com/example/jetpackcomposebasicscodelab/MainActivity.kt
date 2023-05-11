@@ -26,6 +26,7 @@ import com.example.jetpackcomposebasicscodelab.ui.theme.JetpackComposeBasicsCode
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.saveable.rememberSaveable
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
 private fun MyApp(
     modifier: Modifier = Modifier,
 ) {
-    var shouldShowOnboarding by remember{mutableStateOf(true)}
+    var shouldShowOnboarding by rememberSaveable{mutableStateOf(true)}
     Surface(
         modifier = modifier
     ) {
