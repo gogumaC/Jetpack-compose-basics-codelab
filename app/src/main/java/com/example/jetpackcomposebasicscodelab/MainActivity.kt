@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposebasicscodelab.ui.theme.JetpackComposeBasicsCodelabTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.foundation.lazy.items
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,13 +62,14 @@ fun MyAppPreview() {
 @Composable
 private fun Greetings(
     modifier: Modifier=Modifier,
-    names:List<String> =listOf("World","Compose")
+    names:List<String> =List(1000){"$it"}
 ){
-    Column(modifier = modifier.padding(vertical=4.dp)){
-        for(name in names){
-            Greeting(name)
+    LazyColumn(modifier=modifier.padding(vertical=4.dp)){
+        items(items = names){name->
+            Greeting(name=name)
         }
     }
+
 }
 @Preview(showBackground = true, widthDp = 320)
 @Composable
