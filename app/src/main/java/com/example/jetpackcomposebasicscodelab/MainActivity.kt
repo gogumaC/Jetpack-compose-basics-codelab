@@ -30,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.text.font.FontWeight
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,7 +106,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 .padding(bottom = extraPadding)
             ){
                 Text(text = "Hello,")
-                Text(text = name,style=MaterialTheme.typography.headlineMedium)
+                Text(text = name,style=MaterialTheme.typography.headlineMedium.copy(
+                    fontWeight= FontWeight.ExtraBold
+                ))
             }
             ElevatedButton(onClick = {expanded= !expanded}) {
                 Text(text=if(expanded)"Show less" else "Show more")
