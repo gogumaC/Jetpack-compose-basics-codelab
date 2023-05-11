@@ -105,7 +105,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 .padding(bottom = extraPadding)
             ){
                 Text(text = "Hello,")
-                Text(text = name)
+                Text(text = name,style=MaterialTheme.typography.headlineMedium)
             }
             ElevatedButton(onClick = {expanded= !expanded}) {
                 Text(text=if(expanded)"Show less" else "Show more")
