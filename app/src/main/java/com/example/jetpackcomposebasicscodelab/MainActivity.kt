@@ -30,7 +30,14 @@ import com.example.jetpackcomposebasicscodelab.ui.theme.JetpackComposeBasicsCode
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Expand
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 
 class MainActivity : ComponentActivity() {
@@ -111,16 +118,22 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             .fillMaxWidth()){
             Column(modifier= Modifier
                 .weight(1f)
-                .padding(bottom = extraPadding)
+
             ){
                 Text(text = "Hello,")
                 Text(text = name,style=MaterialTheme.typography.headlineMedium.copy(
                     fontWeight= FontWeight.ExtraBold
                 ))
             }
-            ElevatedButton(onClick = {expanded= !expanded}) {
-                Text(text=if(expanded)"Show less" else "Show more")
+            IconButton(onClick = {expanded=!expanded }) {
+                Icon(
+                    imageVector = if(expanded)Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                    contentDescription = if(expanded) stringResource(R.string.show_less) else stringResource(R.string.show_more)
+                )
+
+                
             }
+//
 
         }
     }
