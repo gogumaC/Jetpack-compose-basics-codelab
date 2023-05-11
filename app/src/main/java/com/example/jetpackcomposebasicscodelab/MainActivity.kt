@@ -103,19 +103,19 @@ private fun GreetingsPreview(){
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     var expanded by remember{mutableStateOf(false)}
-    val extraPadding by animateDpAsState(
-        if(expanded) 48.dp else 0.dp,
-        animationSpec=spring(
-            dampingRatio= Spring.DampingRatioMediumBouncy,
-            stiffness=Spring.StiffnessLow
-        )
-    )
+
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical=4.dp, horizontal = 8.dp)
     ) {
         Row(modifier = Modifier
             .padding(24.dp)
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio=Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
             .fillMaxWidth()){
             Column(modifier= Modifier
                 .weight(1f)
@@ -138,7 +138,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
                 
             }
-//
 
         }
     }
