@@ -3,6 +3,7 @@ package com.example.jetpackcomposebasicscodelab
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -82,8 +83,8 @@ private fun GreetingsPreview(){
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val expanded=remember{mutableStateOf(false)}
-    val extraPadding=if(expanded.value) 48.dp else 0.dp
+    var expanded by remember{mutableStateOf(false)}
+    val extraPadding by animateDpAsState(if(expanded) 48.dp else 0.dp)
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical=4.dp, horizontal = 8.dp)
@@ -98,8 +99,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 Text(text = "Hello,")
                 Text(text = name)
             }
-            ElevatedButton(onClick = {expanded.value= !expanded.value}) {
-                Text(text=if(expanded.value)"Show less" else "Show more")
+            ElevatedButton(onClick = {expanded= !expanded}) {
+                Text(text=if(expanded)"Show less" else "Show more")
             }
 
         }
