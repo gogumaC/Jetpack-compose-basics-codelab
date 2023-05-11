@@ -4,6 +4,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -124,7 +125,11 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 Text(text = name,style=MaterialTheme.typography.headlineMedium.copy(
                     fontWeight= FontWeight.ExtraBold
                 ))
+                if(expanded){
+                    Text(("Compsem inpum color sit lzy"+ "padding theme elit, sed do bouncy.").repeat(4))
+                }
             }
+
             IconButton(onClick = {expanded=!expanded }) {
                 Icon(
                     imageVector = if(expanded)Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
